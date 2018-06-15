@@ -3,4 +3,5 @@
 !.gitignore
 !README.md
 
+naive_bayes/*
 !naive_bayes/nb_author_id.py

@@ -1,4 +1,1 @@
-ud120-projects
-==============
-
-Starter project code for students taking Udacity ud120
+Contains exercise files from the UD120 course

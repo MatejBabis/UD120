@@ -12,6 +12,7 @@ import sys
 sys.path.append("../tools/")
 from feature_format import featureFormat, targetFeatureSplit
 from sklearn.cluster import KMeans
+from sklearn.preprocessing import MinMaxScaler
 
 
 def Draw(pred, features, poi, mark_poi=False, name="image.png", f1_name="feature 1", f2_name="feature 2"):
@@ -46,17 +47,25 @@ data_dict.pop("TOTAL", 0)
 # can be any key in the person-level dictionary (salary, director_fees, etc.)
 feature_1 = "salary"
 feature_2 = "exercised_stock_options"
-feature_3 = "total_payments"
+# feature_3 = "total_payments"
 poi = "poi"
 
-# features_list = [poi, feature_1, feature_2]
-features_list = [poi, feature_1, feature_2, feature_3]
+# features_list = [poi, feature_1, feature_2, feature_3]
+features_list = [poi, feature_1, feature_2]
 data = featureFormat(data_dict, features_list)
 poi, finance_features = targetFeatureSplit(data)
 
+# feature scaling
+scaler = MinMaxScaler()
+scaler.fit(finance_features)
+new_finance_features = scaler.transform(finance_features)
+
+# to answer Q: rescaled value of salary $200000, and "exercised_stock_options" $1 million
+print "rescaled value:", scaler.transform([[200000, 1000000]])
+
 # plot cluster points
-# for f1, f2 in finance_features:
-for f1, f2, _ in finance_features:
+# for f1, f2, _ in finance_features:
+for f1, f2 in finance_features:
     plt.scatter(f1, f2)
 plt.show()
 
@@ -67,7 +76,8 @@ pred = kmeans.predict(finance_features)
 # find min/max for a feature
 min_f = sys.maxint
 max_f = -sys.maxint
-for f, _, _ in finance_features:
+# for f, _, _ in finance_features:
+for f, _ in finance_features:
     if f == 0:
         continue
     if f > max_f:

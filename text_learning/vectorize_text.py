@@ -51,7 +51,7 @@ for name, from_person in [("sara", from_sara), ("chris", from_chris)]:
         temp_string = ""
         for word in parsed_email.split(" "):
             # check for unwanted words; don't include them
-            if word not in ["sara", "shackleton", "chris", "germani"]:
+            if word not in ["sara", "shackleton", "chris", "germani", "sshacklensf", "cgermannsf"]:
                 temp_string += " " + word
         # remove leading / trailing whitespace
         parsed_email = temp_string.strip()

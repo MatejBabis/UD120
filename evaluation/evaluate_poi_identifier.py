@@ -41,8 +41,8 @@ conf_matrix = confusion_matrix(labels_pred, labels_test)
 
 print conf_matrix
 
-print "Precision =", conf_matrix[1][1] / float(conf_matrix[0][1] + conf_matrix[1][1])
-print "Recall =", conf_matrix[1][1] / float(conf_matrix[1][0] + conf_matrix[1][1])
+print "Precision =", conf_matrix[1][1] / float(conf_matrix[1][0] + conf_matrix[1][1])
+print "Recall =", conf_matrix[1][1] / float(conf_matrix[0][1] + conf_matrix[1][1])
 
 ##############
 # "made-up" dataset
@@ -55,5 +55,5 @@ conf_matrix = confusion_matrix(predictions, true_labels)
 
 print conf_matrix
 
-print "Precision =", conf_matrix[1][1] / float(conf_matrix[0][1] + conf_matrix[1][1])
-print "Recall =", conf_matrix[1][1] / float(conf_matrix[1][0] + conf_matrix[1][1])
+print "Precision =", conf_matrix[1][1] / float(conf_matrix[1][0] + conf_matrix[1][1])
+print "Recall =", conf_matrix[1][1] / float(conf_matrix[0][1] + conf_matrix[1][1])
